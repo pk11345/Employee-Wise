@@ -1,6 +1,8 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const UserList = () => {
@@ -43,7 +45,7 @@ const UserList = () => {
             }))
             console.log(change)
             setEdit(null)
-            alert("User Updated")
+            toast.success("User Updated");
             
             console.log(user)
         }
@@ -56,7 +58,7 @@ const UserList = () => {
         try{
           const change = await axios.delete(`https://reqres.in/api/users/${edit}`)
          setUser(user.filter((user)=>user.id!==id))
-         alert("User deleted")
+         toast.success("User Deleted");
       }
       catch(error){
           console.log("user not updated :", error)
@@ -67,20 +69,20 @@ const UserList = () => {
       //  console.log(token)
        const Logout =()=>{
         localStorage.removeItem("token")
+        toast.success("Logged Out");
+        setTimeout(() => {
+          navigate("/")
+        }, 1000);
        }
     
   return (
     <>
+    <ToastContainer />
     <div className='bg-gradient-to-r from-violet-600 to-indigo-600 w-full min-h-screen'>
      
     <div  className='w-full flex justify-center gap-3 pt-3'>
         
-        <button onClick={()=>{
-          Logout
-          setTimeout(() => {
-            navigate("/")
-          }, 1000);
-        }}
+        <button onClick={Logout}
          className='bg-red-400 text-xl p-3 text-white font-fold rounded-xl cursor-pointer'>Logout</button>
     </div>
 

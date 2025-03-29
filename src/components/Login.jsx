@@ -1,6 +1,9 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 const Login = () => {
@@ -24,10 +27,11 @@ const Login = () => {
             
             console.log(res.data)
             localStorage.setItem("token",res.data)
+            toast.success("Login Successful");
 
             setTimeout(() => {
                 navigate("/UserList")
-                alert("Login Successful")
+                
             }, 1000);
 
             setEmail("")
@@ -36,7 +40,7 @@ const Login = () => {
         })
         .catch((err)=>{
             console.log(err)
-            alert("Enter Valid Email Id")
+            toast.error("Enter Valid Email Id");
         })
 
         // setEmail("")
@@ -47,10 +51,12 @@ const Login = () => {
   return (
     <>
    
-     
+   <ToastContainer />
     <div className='w-screen min-h-screen bg-gradient-to-r from-violet-600 to-indigo-600 flex flex-col gap-3 justify-center items-center'>
    
-        <h1 className='text-4xl italic underline font-extrabold text-green-400'>EmployWise Assignment by Pankaj Kumar</h1>
+        <h1 className='md:text-4xl text-2xl w-full text-center italic underline font-extrabold text-green-400'>
+            EmployWise Assignment by Pankaj Kumar
+            </h1>
     
         <h1 className='text-2xl  font-bold'>Login</h1>
         <form onSubmit={handleSubmit}
