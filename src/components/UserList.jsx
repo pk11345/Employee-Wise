@@ -71,6 +71,7 @@ const UserList = () => {
     
   return (
     <>
+    <div className='bg-gradient-to-r from-violet-600 to-indigo-600 w-full min-h-screen'>
      
     <div  className='w-full flex justify-center gap-3 pt-3'>
         
@@ -80,18 +81,24 @@ const UserList = () => {
             navigate("/")
           }, 1000);
         }}
-         className='bg-red-400 text-xl p-3 text-white font-fold rounded-xl'>Logout</button>
+         className='bg-red-400 text-xl p-3 text-white font-fold rounded-xl cursor-pointer'>Logout</button>
     </div>
-    
 
+    <div className='w-full flex justify-center'>
     {/* display user */}
-    <div className='w-full p-5 flex md:flex-row flex-col items-center flex-wrap md:justify-center gap-4 '>
+    <div className={`w-full p-5 flex md:flex-row flex-col items-center flex-wrap
+       md:justify-center gap-4 ${edit ? 'blur-xs' : ''}`}>
         {token&&token.length!==0?  user.map((t)=>{
             return <>
-            <div className="card md:w-[400px] w-[300px] p-5 border-2 gap-3 border-black rounded-lg flex flex-col items-center" key={t.id}>
-                <h1>{t.first_name} {t.last_name}</h1>
-                <h2>{t.email}</h2>
-                <img src={t.avatar} alt="" />
+            <div className="card md:w-[400px] w-[300px] p-5 border-2 gap-3 border-white rounded-lg flex flex-col 
+            items-center bg-gradient-to-r from-indigo-500 to-violet-500" 
+            key={t.id}>
+                <h1 className='text-xl font-bold italic text-white'>{t.first_name} {t.last_name}</h1>
+                <h2 className='text-sm font-semibold'>{t.email}</h2>
+                
+                <img className='rounded-[50%] w-[40%]'
+                 src={t.avatar} alt="" />
+                
                 <button onClick={()=>{
                     editUser(t)
                 }}
@@ -105,13 +112,14 @@ const UserList = () => {
             </> 
         })   :  <p>Login To See Users</p>
         }
-
+ </div>
 
         {/* edit user  */}
         {edit && 
         <>
 
-         <div className='bg-red-300 flex flex-col w-[400px] pt-1 pb-2
+         <div className='bg-gradient-to-r from-indigo-500 to-violet-500 border-2 border-white flex flex-col
+          md:w-[400px] w-[300px] pt-1 pb-2
            items-center gap-3 absolute top-[100px]  shadow-2xl shadow-black'>
           <h2>Edit User</h2>
           <input className='bg-white pl-2 pt-1 pb-2'
@@ -147,8 +155,8 @@ const UserList = () => {
             >Cancel</button>
         </div>
         </>}
-        
-    </div>
+        </div>
+   
 
     {/* pagination */}
     <div className='flex w-full justify-center gap-4 pb-3'>
@@ -161,6 +169,7 @@ const UserList = () => {
           setPage(page+1)
         }}
           className='bg-red-400 pt-1 pb-2 pl-4 pr-4 text-white font-bold cursor-pointer'>Next</button>
+          </div>
           </div>
     </>
   )

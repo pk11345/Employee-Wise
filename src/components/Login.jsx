@@ -46,27 +46,32 @@ const Login = () => {
 
   return (
     <>
+   
      
-    <div className='w-screen min-h-screen bg-blue-200 flex flex-col gap-3 justify-center items-center'>
-        <h1 className='text-2xl font-bold'>Login</h1>
+    <div className='w-screen min-h-screen bg-gradient-to-r from-violet-600 to-indigo-600 flex flex-col gap-3 justify-center items-center'>
+   
+        <h1 className='text-4xl italic underline font-extrabold text-green-400'>EmployWise Assignment by Pankaj Kumar</h1>
+    
+        <h1 className='text-2xl  font-bold'>Login</h1>
         <form onSubmit={handleSubmit}
-         className='flex flex-col items-center gap-4 bg-violet-400 p-4 md:w-[400px] w-[300px]' >
+         className='flex flex-col items-center gap-4 bg-gradient-to-r from-indigo-500 to-violet-500
+          p-4 md:w-[400px] w-[300px] ' >
 
-            <label htmlFor="Email">Email</label>
+            <label htmlFor="Email" className='text-xl font-semibold'>Email</label>
             <input onChange={(e)=>{
                 setEmail(e.target.value)
             }} value={email}
              className='bg-white pl-3 pt-2 pb-3 w-[60%]' required
              type="email" name=""  placeholder='Enter Your Email' />
 
-            <label htmlFor="Password">Password</label>
+            <label htmlFor="Password" className='text-xl font-semibold'>Password</label>
             <input onChange={(e)=>{
                 setPassword(e.target.value)
             }} value={password}
              className='bg-white pl-3 pt-2 pb-3 w-[60%]' required
              type="password" name=""  placeholder='Enter Your Password' />
 
-            <input className='bg-red-300 pl-3 pt-2 pb-3 pr-3 rounded-xl'
+            <input className='bg-red-300 pl-3 pt-2 pb-3 pr-3 rounded-xl cursor-pointer'
              type="submit" value="Submit" />
         </form>
     </div>
